@@ -37,5 +37,5 @@
 ## Notes
 
 - DSE Patching Method Based on: [KVC By Wesmar](https://github.com/wesmar/kvc)
-- Tested with:  DenuvOwO Edition 24H2
+- Tested with: Black Myth Wukong, Persona 3 Reload, Assassin's Creed Shadows DenuvOwO Edition 24H2
 - Games Not Working:
