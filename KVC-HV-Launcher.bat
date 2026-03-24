@@ -3,16 +3,19 @@ echo ================================================
 echo       KVC DSE Bypass Launcher By SOULX3X
 echo ================================================
 
-net session >nul 2>&1
-
 if /i not "%~1"=="__MINIMIZED__" (
     start "" /min cmd /c ""%~f0" __MINIMIZED__"
     exit /b
 )
 
-if %errorlevel% neq 0 (
-    echo Relaunching with administrator privileges...
-    powershell -Command "Start-Process '%~f0' -Verb RunAs"
+fltmc >nul 2>&1
+if errorlevel 1 (
+    echo.
+    echo This script requires administrator privileges.
+    echo.
+    echo A UAC prompt will appear. Please click "Yes".
+    echo.
+    powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -Command "Start-Process -FilePath '%~f0' -Verb RunAs -WindowStyle Hidden" >nul 2>&1
     exit /b
 )
 
@@ -65,11 +68,17 @@ goto END
 echo Checking MSI Afterburner status...
 
 set "MSI_RUNNING=0"
+set "MSI_PATH="
 
 tasklist /FI "IMAGENAME eq MSIAfterburner.exe" | find /I "MSIAfterburner.exe" >nul
 if %errorlevel%==0 (
     echo MSI Afterburner is running. Closing it...
     set "MSI_RUNNING=1"
+
+    for /f "tokens=2 delims==" %%A in (
+     'wmic process where "name='MSIAfterburner.exe'" get ExecutablePath /value 2^>nul'
+    ) do set "MSI_PATH=%%A"
+
     taskkill /IM MSIAfterburner.exe /F >nul 2>&1
 ) else (
     echo MSI Afterburner is not running.
@@ -82,6 +91,8 @@ goto CONTINUE_SCRIPT
 :CONTINUE_SCRIPT
 echo Core Isolation is disabled. Continuing...
 echo.
+
+timeout /t 2 /nobreak > nul
 
 echo [1/3] Disabling DSE...
 kvc.exe dse off --safe
@@ -119,7 +130,7 @@ kvc.exe dse on --safe
 :: ============================================
 if "%MSI_RUNNING%"=="1" (
     echo Restarting MSI Afterburner...
-    start "" "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
+    if defined MSI_PATH start "" "%MSI_PATH%"
 ) else (
     echo MSI Afterburner was not running before. Skipping restart.
 )
