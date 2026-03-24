@@ -92,13 +92,12 @@ goto CONTINUE_SCRIPT
 echo Core Isolation is disabled. Continuing...
 echo.
 
-timeout /t 2 /nobreak > nul
+timeout /t 1 /nobreak > nul
 
 echo [1/3] Disabling DSE...
 kvc.exe dse off --safe
 
-echo Waiting 10 seconds...
-timeout /t 10 /nobreak >nul
+timeout /t 0 /nobreak >nul
 
 echo Searching for loader executable...
 
@@ -119,8 +118,7 @@ if not defined loader (
 echo Found: %loader%
 start "" "%loader%"
 
-echo Waiting 10 seconds...
-timeout /t 10 /nobreak >nul
+timeout /t 1 /nobreak >nul
 
 echo [3/3] Enabling DSE...
 kvc.exe dse on --safe
