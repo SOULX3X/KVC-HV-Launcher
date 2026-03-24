@@ -27,7 +27,7 @@
 3. Run `KVC-HV-Launcher.bat`.
 4. And Play.
 
-## How to use `KVC-HV-Launcher.exe`(The EXE will be released soon till then please use the bat file)
+## How to use `KVC-HV-Launcher.exe`
 
 1. Make sure VBS is off.
 2. Move `KVC-HV-Launcher.exe` into the game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64\`)
