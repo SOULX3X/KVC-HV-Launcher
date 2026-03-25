@@ -202,12 +202,21 @@ echo [3/3] Enabling DSE...
 kvc.exe dse on --safe
 
 :RESTORE_MSI
-if "%MSI_RUNNING%"=="1" (
-    echo Restarting MSI Afterburner...
-    if defined MSI_PATH start "" "%MSI_PATH%"
+echo Restarting MSI Afterburner...
+if defined MSI_PATH (
+    start "" "%MSI_PATH%"
+) else (
+    if exist "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" (
+        start "" "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
+    ) else (
+        if exist "C:\Program Files\MSI Afterburner\MSIAfterburner.exe" (
+            start "" "C:\Program Files\MSI Afterburner\MSIAfterburner.exe"
+        ) else (
+            echo WARNING: MSI Afterburner path could not be detected. Please launch it manually.
+        )
+    )
 )
-
-timeout /t 0 /nobreak >nul & if exist "%~dp0kvc.exe" del /f /q "%~dp0kvc.exe" >nul 2>&1
+exit /b 0
 
 :END
 exit
