@@ -70,4 +70,4 @@ This tool automates a launch flow that:
 
 - DSE patching method is based on [KVC By Wesmar](https://github.com/wesmar/kvc).
 - The script downloads `kvc.7z`, extracts `kvc.exe`, and uses it to toggle DSE.
-- Tested with: Stellar Blade, Black Myth Wukong, Crimson Desert, Mafia The Old Country, Resident Evil Requiem, Persona 4 Golden (DenuvOwO Edition) on 24H2 and 25H2.
+- Tested with: Will work on almost any game but if you find an error with a game please raise an issue
