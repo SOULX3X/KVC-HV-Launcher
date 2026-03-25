@@ -1,5 +1,5 @@
-# KVC-HV-Launcher (Work in Progress — Do Not Share)
-`KVC-HV-Launcher` is a launcher helper script that checks system requirements, starts the game loader, and restores settings afterward (no reboot required during launch flow).
+# KVC-HV-Launcher
+`KVC-HV-Launcher` is a single file launcher helper script that checks system requirements, starts the game loader, and restores settings afterward (no reboot required during launch flow).
 
 ## What it does
 
@@ -20,21 +20,15 @@
 - Waits, then runs `kvc.exe dse on --safe` to re-enable DSE.
 - Restarts MSI Afterburner if it was previously running.
 
-## How to use `KVC-HV-Launcher.bat` and `kvc.exe`
+## How to use `KVC-HV-Launcher.bat`
 
 1. Make sure VBS is off.
-2. Move `KVC-HV-Launcher.bat` and `kvc.exe` into the game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64\`)
+2. Move `KVC-HV-Launcher.bat` into the game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64\`)
 3. Run `KVC-HV-Launcher.bat`.
-4. And Play.
-
-## How to use `KVC-HV-Launcher.exe`
-
-1. Make sure VBS is off.
-2. Move `KVC-HV-Launcher.exe` into the game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64\`)
-3. Run `KVC-HV-Launcher.exe`.
 4. And Play.
 
 ## Notes
 
 - DSE Patching Method Based on: [KVC By Wesmar](https://github.com/wesmar/kvc)
-- Tested with: Black Myth Wukong, Persona 3 Reload, Assassin's Creed Shadows DenuvOwO Edition 24H2
+- The script auto downloads the `KVC.7z` archive from the github linked above uses it and deletes it after use.
+- Tested with: Will work on any game but if there is one please raise an issue.
