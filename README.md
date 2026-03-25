@@ -9,7 +9,7 @@ Single-file launcher helper for Windows 11 that checks prerequisites, runs launc
 ## ⚠️ Important
 
 
-> - **Windows 11 only**: this script is designed to work on Windows 11.
+> - **Windows 10/11 only**: this script is designed to work on Windows 10/11.
 > - **Testing and educational purposes only**.
 > - By using this project, you accept full responsibility for your actions and system state.
 > - Authors/contributors are **not responsible** for damage, data loss, account issues, bans, or other consequences.
@@ -51,7 +51,7 @@ This tool automates a launch flow that:
 
 ## ✅ Requirements
 
-- Windows 11
+- Windows 10/11
 - VBS disabled
 - Administrator rights
 
