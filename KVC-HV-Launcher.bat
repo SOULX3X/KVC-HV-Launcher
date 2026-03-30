@@ -201,6 +201,12 @@ timeout /t 0 /nobreak >nul
 echo [3/3] Enabling DSE...
 kvc.exe dse on --safe
 
+:DELETE_FILE_EXCLUSION
+echo Checking and removing Windows Defender exclusion for kvc.exe if present...
+set "KVC_PATH=%~dp0kvc.exe"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "[string[]]$excl = (Get-MpPreference).ExclusionPath; if ($excl -contains $env:KVC_PATH) { Remove-MpPreference -ExclusionPath $env:KVC_PATH }" >nul 2>&1
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Remove-MpPreference -ExclusionProcess 'kvc.exe' -ErrorAction SilentlyContinue" >nul 2>&1
+
 :RESTORE_MSI
 echo Restarting MSI Afterburner...
 if defined MSI_PATH (
