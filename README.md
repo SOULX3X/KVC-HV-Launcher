@@ -60,7 +60,7 @@ This tool automates a launch flow that:
 ## 🧩 How to Use
 
 1. Make sure VBS is off.
-2. Move `KVC-HV-Launcher.bat` into the main game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64`).
+2. Move `KVC-HV-Launcher.bat` into the main game folder near the crack. (for example: `BlackMythWukong\b1\Binaries\Win64\`).
 4. Run `KVC-HV-Launcher.bat`.
 5. Launch and play 🎮
 
