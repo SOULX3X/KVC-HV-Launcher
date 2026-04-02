@@ -1,7 +1,7 @@
 <h1 align="center">KVC-HV-Launcher</h1>
 
 <p align="center">
-Single-file launcher helper for Windows 11 that checks prerequisites, runs launch flow, and restores settings automatically.
+Single-file launcher helper for Windows 10/11 that checks prerequisites, runs launch flow, and restores settings automatically.
 </p>
 
 <hr>
