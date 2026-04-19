@@ -188,7 +188,18 @@ if not defined loader if exist "hypervisor-launcher.exe" set "loader=hypervisor-
 if not defined loader if exist "HV-StartGame.exe" set "loader=HV-StartGame.exe"
 
 if not defined loader (
-    echo ERROR: No loader executable found!
+    echo No loader executable found! Searching for the largest executable...
+    for /f "delims=" %%A in ('dir /b /A:-D /O:-S *.exe 2^>nul') do (
+        if /i not "%%A"=="kvc.exe" if /i not "%%A"=="7zr.exe" (
+            set "loader=%%A"
+            goto FOUND_LOADER
+        )
+    )
+)
+
+:FOUND_LOADER
+if not defined loader (
+    echo ERROR: No executable found!
     pause
     goto RESTORE_MSI
 )
@@ -196,7 +207,20 @@ if not defined loader (
 echo Found: %loader%
 start "" "%loader%"
 
-timeout /t 0 /nobreak >nul
+set WAIT_LOADER=0
+:WAIT_LOADER_LOOP
+tasklist /FI "IMAGENAME eq %loader%" 2>nul | find /I "%loader%" >nul
+if %errorlevel%==0 goto LOADER_STARTED
+
+set /a WAIT_LOADER+=1
+if %WAIT_LOADER% GEQ 15 (
+    echo WARNING: %loader% did not start in time. Proceeding anyway...
+    goto LOADER_STARTED
+)
+timeout /t 3 /nobreak >nul
+goto WAIT_LOADER_LOOP
+
+:LOADER_STARTED
 
 echo [3/3] Enabling DSE...
 kvc.exe dse on --safe
