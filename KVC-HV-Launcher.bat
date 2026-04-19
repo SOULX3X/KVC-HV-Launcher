@@ -222,6 +222,8 @@ goto WAIT_LOADER_LOOP
 
 :LOADER_STARTED
 
+timeout /t 3 /nobreak >nul
+
 echo [3/3] Enabling DSE...
 kvc.exe dse on --safe
 
