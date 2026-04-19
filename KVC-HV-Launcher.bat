@@ -209,7 +209,7 @@ start "" "%loader%"
 
 set WAIT_LOADER=0
 :WAIT_LOADER_LOOP
-tasklist /FI "IMAGENAME eq %loader%" 2>nul | find /I "%loader%" >nul
+tasklist /FO CSV /FI "IMAGENAME eq %loader%" 2>nul | find /I "%loader%" >nul
 if %errorlevel%==0 goto LOADER_STARTED
 
 set /a WAIT_LOADER+=1
