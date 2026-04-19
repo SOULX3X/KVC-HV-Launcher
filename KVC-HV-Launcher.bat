@@ -190,7 +190,7 @@ if not defined loader if exist "HV-StartGame.exe" set "loader=HV-StartGame.exe"
 if not defined loader (
     echo No loader executable found! Searching for the largest executable...
     for /f "delims=" %%A in ('dir /b /A:-D /O:-S *.exe 2^>nul') do (
-        if /i not "%%A"=="kvc.exe" if /i not "%%A"=="7zr.exe" (
+        if /i not "%%A"=="kvc.exe" if /i not "%%A"=="UnityCrashHandler64.exe" if /i not "%%A"=="7zr.exe" (
             set "loader=%%A"
             goto FOUND_LOADER
         )
@@ -213,7 +213,7 @@ tasklist /FO CSV /FI "IMAGENAME eq %loader%" 2>nul | find /I "%loader%" >nul
 if %errorlevel%==0 goto LOADER_STARTED
 
 set /a WAIT_LOADER+=1
-if %WAIT_LOADER% GEQ 15 (
+if %WAIT_LOADER% GEQ 5 (
     echo WARNING: %loader% did not start in time. Proceeding anyway...
     goto LOADER_STARTED
 )
